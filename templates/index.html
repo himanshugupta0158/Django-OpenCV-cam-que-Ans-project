@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.13/dist/vue.js"></script>
+    
+
+    <title>Document</title>
+</head>
+<body onload="refresh()">
+
+    <div id="info">
+        <div>[[ information ]]</div>
+    </div>
+
+    <div id="app">
+        <div>[[ message ]]</div> <br>
+        <div>Name : [[ name ]]</div>
+    </div>
+
+    <a href="{% url 'camOn' %}"><button>Camera</button></a><br>
+    <h3>Press 'q' key to quit Camera</h3>
+
+    
+
+
+    <script>
+        var app = new Vue({
+            delimiters: ["[[", "]]"],
+            el: "#app",
+            data: {
+                message: 'Hello ! {{ username }}',
+                name : '{{username}}'
+            },
+        });
+
+        var info = new Vue({
+            delimiters: ["[[", "]]"],
+            el: "#info",
+            data: {
+                information: '{{ info }}',
+            },
+        });
+
+        
+
+    //     $(document).ready(function () {
+    // setInterval(function () {
+    //     $('#here').load('#here');
+    // }, 3000) });
+
+
+
+    </script>
+
+    
+</body>
+</html>

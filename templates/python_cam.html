@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <!-- for python file/code execution in html -->
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+
+    <title>Python Camera</title>
+</head>
+<body>
+
+    <py-script >
+
+import cv2 as cv
+import time
+
+capture = cv.VideoCapture(0)
+count = 0 
+
+start_time = int(time.time())
+
+while True:
+    isTrue, frame = capture.read()
+    key = cv.waitKey(1)
+
+    cv.imshow("Cam Video",frame)
+
+    if key == ord('q'):
+        break
+
+    
+    current_time = int(time.time())
+    
+    isTenSec = current_time - start_time
+
+    if isTenSec >= 10:
+        start_time = current_time
+        print("Time difference : ",isTenSec)
+        if count == 0:
+            name = f'pages/images/saved_img.jpg'
+            count += 1
+        else:
+            name = f'pages/images/saved_img{count}.jpg'
+            count += 1
+        cv.imwrite(filename=str(name), img=frame)
+
+capture.release()
+cv.destroyAllWindows()
+        
+    </py-script>
+    
+</body>
+</html>
